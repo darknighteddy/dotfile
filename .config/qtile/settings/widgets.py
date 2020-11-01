@@ -10,9 +10,9 @@ base = lambda fg='text', bg='dark': {
 
 separator = lambda: widget.Sep(**base(), linewidth=0, padding=5)
 
-icon = lambda fg='text', bg='dark', fontsize=16, text="?": widget.TextBox(
+icon = lambda fg='text', bg='dark', fontsize=40, text="?": widget.TextBox(
     **base(fg, bg),
-    fontsize=fontsize,
+    fontsize=30,
     text=text,
     padding=3
 )
@@ -20,7 +20,7 @@ icon = lambda fg='text', bg='dark', fontsize=16, text="?": widget.TextBox(
 powerline = lambda fg="light", bg="dark": widget.TextBox(
    **base(fg, bg),
     text="", # Icon: nf-oct-triangle_left
-    fontsize=37,
+    fontsize=40,
     padding=-2
 )
 
@@ -29,7 +29,7 @@ workspaces = lambda: [
     widget.GroupBox(
         **base(fg='light'),
         font='UbuntuMono Nerd Font',
-        fontsize=19,
+        fontsize=40,
         margin_y=3,
         margin_x=0,
         padding_y=8,
@@ -48,42 +48,33 @@ workspaces = lambda: [
         disable_drag=True
     ),
     separator(),
-    widget.WindowName(**base(fg='focus'), fontsize=14, padding=5),
+    widget.WindowName(**base(fg='text'), fontsize=40, padding=5),
     separator(),
 ]
 
 primary_widgets = [
+
+    widget.CurrentLayoutIcon(**base(bg='color1'), scale=0.80,),
+
     *workspaces(),
+
+    icon(bg="color1", text=' '), # Icon: nf-fa-download
+
+    separator(),
+    
+    widget.Pacman(**base(bg='color1'), update_interval=1800),
 
     separator(),
 
-    powerline('color4', 'dark'),
-
-    icon(bg="color4", text=' '), # Icon: nf-fa-download
+    icon(bg="color1", text=' ', fontsize=20,),  # Icon: nf-fa-feed
     
-    widget.Pacman(**base(bg='color4'), update_interval=1800),
+    widget.Net(**base(bg='color1'), interface='enp2s0', format='{down}{up}', fontsize=20),
 
-    powerline('color3', 'color4'),
-
-    icon(bg="color3", text=' '),  # Icon: nf-fa-feed
+    widget.Systray(background=colors['color1'], padding=15, icon_size=35),
     
-    widget.Net(**base(bg='color3'), interface='wlp2s0'),
+    widget.Clock(**base(bg='color1'), format=' %H:%M - %d/%m/%Y  '),
 
-    powerline('color2', 'color3'),
-
-    widget.CurrentLayoutIcon(**base(bg='color2'), scale=0.65),
-
-    widget.CurrentLayout(**base(bg='color2'), padding=5),
-
-    powerline('color1', 'color2'),
-
-    icon(bg="color1", fontsize=17, text=' '), # Icon: nf-mdi-calendar_clock
-
-    widget.Clock(**base(bg='color1'), format='%d/%m/%Y - %H:%M '),
-
-    powerline('dark', 'color1'),
-
-    widget.Systray(background=colors['dark'], padding=5),
+    
 
 ]
 
@@ -101,7 +92,7 @@ secondary_widgets = [
 
 widget_defaults = {
     'font': 'UbuntuMono Nerd Font',
-    'fontsize': 35,
+    'fontsize': 40,
     'padding': 1,
 }
 extension_defaults = widget_defaults.copy()

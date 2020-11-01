@@ -13,8 +13,12 @@ rclone mount --vfs-cache-mode writes eddy-congregacion: /home/eddy/Drive/Eddy-co
 
 # Gestionnaire d' Alimentation
 xfce4-power-manager &
-#Economiseur d'écran
+
+# Economiseur d'écran
 xfce4-screensaver &
+
+# Theme GTK
+#lxappearance &
 
 # Fond d'écran
 nitrogen --restore &
@@ -24,3 +28,9 @@ nitrogen --restore &
 
 # Transparence
 picom &
+
+# USB - Disques durs externes
+udiskie -t &
+
+# Internet
+nm-applet &
